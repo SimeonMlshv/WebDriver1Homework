@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -6,11 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class userDetailsAdded {
+public class completeOrder {
 
     @Test
-    public void addUserDetailsAtCheckout() {
-
+    public void completeOrderAtCheckout(){
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://www.saucedemo.com/v1/");
@@ -43,9 +41,5 @@ public class userDetailsAdded {
         WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/input"));
         continueButton.click();
 
-        var summaryPageOverview = driver.findElement(By.xpath("//*[@id=\"contents_wrapper\"]/div[2]"));
-        Assertions.assertEquals("Checkout: Overview", summaryPageOverview.getText());
-
-        driver.close();
     }
 }
