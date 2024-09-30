@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class completeOrder {
 
     @Test
@@ -41,5 +45,14 @@ public class completeOrder {
         WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/input"));
         continueButton.click();
 
+        WebElement finishButton = driver.findElement(By.xpath("//*[@id=\"checkout_summary_container\"]/div/div[2]/div[8]/a[2]"));
+        finishButton.click();
+
+        // Verify that the cart is empty
+        driver.findElement(By.className("shopping_cart_link")).click();
+        List<WebElement> cartItems = driver.findElements(By.className("inventory_item_name"));
+        assertEquals(0, cartItems.size(), "Cart is empty after completing the order");
+
+        driver.close();
     }
 }
